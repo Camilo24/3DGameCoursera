@@ -1,6 +1,4 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Unlit/miShader"
+﻿Shader "Unlit/miShader"
 {
 	Properties
 	{
@@ -47,7 +45,7 @@ Shader "Unlit/miShader"
 			v2f vert (appdata v)
 			{
 				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.uv2 = TRANSFORM_TEX(v.uv2, _OtherTex);
 				UNITY_TRANSFER_FOG(o,o.vertex);
